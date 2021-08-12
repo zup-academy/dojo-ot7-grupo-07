@@ -27,13 +27,10 @@ public class AeroportoController {
     }
 
     @PostMapping
-    public ResponseEntity<?> create(@RequestBody @Valid AeroportoRequest request, UriComponentsBuilder uriBuilder){
+    public ResponseEntity<?> create(@RequestBody @Valid AeroportoRequest request, UriComponentsBuilder uriBuilder) {
         Aeroporto aeroporto = request.toModel(paisRepository);
-
         aeroportoRepository.save(aeroporto);
-
         URI uri = uriBuilder.path("/aeroportos/{id}").buildAndExpand(aeroporto.getId()).toUri();
-
         return ResponseEntity.created(uri).build();
     }
 }

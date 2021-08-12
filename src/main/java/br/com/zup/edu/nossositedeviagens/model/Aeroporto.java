@@ -25,4 +25,12 @@ public class Aeroporto {
     public Long getId() {
         return id;
     }
+
+    public boolean mesmoId(Long id) {
+        return this.id == id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
 }
