@@ -7,13 +7,18 @@ import br.com.zup.edu.nossositedeviagens.repository.PaisRepository;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.util.Optional;
 
 public class CompanhiaRequest {
     @NotBlank
+    @UnicoValor(
+            target = Companhia.class,
+            field = "nome",
+            message = "Companhia já existe."
+    )
     private String nome;
 
     @NotNull
-    @UnicoValor(target = Pais.class, field = "id")
     private Integer pais;
 
     @Deprecated
@@ -29,6 +34,7 @@ public class CompanhiaRequest {
     }
 
     public Companhia toModel(PaisRepository paisRepository) {
-        return new Companhia(this.nome, paisRepository.findById(this.pais).get());
+        Optional<Pais> pais = paisRepository.findById(this.pais);
+        return new Companhia(this.nome, pais.get() );
     }
 }

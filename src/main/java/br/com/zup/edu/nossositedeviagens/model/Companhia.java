@@ -18,9 +18,13 @@ public class Companhia {
     @ManyToOne
     private Pais pais;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @CreationTimestamp
+    @Column(nullable = false)
     private LocalDateTime instante;
+
+    @PrePersist
+    protected void onCreate() {
+        instante = LocalDateTime.now();;
+    }
 
     @Deprecated
     public Companhia() {
