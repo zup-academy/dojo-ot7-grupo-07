@@ -2,10 +2,12 @@ package br.com.zup.edu.nossositedeviagens.dto.request;
 
 import br.com.zup.edu.nossositedeviagens.config.UnicoValor;
 import br.com.zup.edu.nossositedeviagens.model.Aeroporto;
+import br.com.zup.edu.nossositedeviagens.model.Pais;
 import br.com.zup.edu.nossositedeviagens.repository.PaisRepository;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.util.Optional;
 
 public class AeroportoRequest {
 
@@ -18,13 +20,13 @@ public class AeroportoRequest {
     private String nome;
 
     @NotNull
-    private Long pais;
+    private Integer pais;
 
     public String getNome() {
         return nome;
     }
 
-    public Long getPais() {
+    public Integer getPais() {
         return pais;
     }
 
@@ -37,7 +39,7 @@ public class AeroportoRequest {
     }
 
     public Aeroporto toModel(PaisRepository paisRepository) {
-        paisRepository.findById();
-        return new Aeroporto(nome,)
+        Optional<Pais> pais = paisRepository.findById(this.pais);
+        return new Aeroporto(nome,pais.get());
     }
 }

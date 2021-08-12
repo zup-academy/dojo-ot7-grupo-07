@@ -1,6 +1,7 @@
 package br.com.zup.edu.nossositedeviagens.controller;
 
 import br.com.zup.edu.nossositedeviagens.dto.request.AeroportoRequest;
+import br.com.zup.edu.nossositedeviagens.model.Aeroporto;
 import br.com.zup.edu.nossositedeviagens.repository.AeroportoRepository;
 import br.com.zup.edu.nossositedeviagens.repository.PaisRepository;
 import org.springframework.http.ResponseEntity;
@@ -25,8 +26,10 @@ public class AeroportoController {
 
     @PostMapping
     public ResponseEntity<?> create(@RequestBody @Valid AeroportoRequest request){
-        aeroportoRepository.save(request.toModel(paisRepository));
+        Aeroporto aeroporto = request.toModel(paisRepository);
 
-        return ResponseEntity.status(201).build();
+        aeroportoRepository.save(aeroporto);
+
+        return ResponseEntity.status(201).body(aeroporto);
     }
 }

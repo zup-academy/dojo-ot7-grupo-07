@@ -21,4 +21,8 @@ public class Aeroporto {
         this.nome = nome;
         this.pais = pais;
     }
+
+    public String getNome() {
+        return nome;
+    }
 }
