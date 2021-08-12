@@ -2,11 +2,10 @@ package br.com.zup.edu.nossositedeviagens.dto.request;
 
 import br.com.zup.edu.nossositedeviagens.model.Aeroporto;
 import br.com.zup.edu.nossositedeviagens.repository.AeroportoRepository;
-import br.com.zup.edu.nossositedeviagens.repository.Rota;
+import br.com.zup.edu.nossositedeviagens.model.Rota;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
 
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 import java.time.Duration;

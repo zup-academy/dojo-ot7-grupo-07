@@ -1,9 +1,10 @@
 package br.com.zup.edu.nossositedeviagens.controller;
 
 import br.com.zup.edu.nossositedeviagens.config.ProibeAeroportoOrigemDestinoIguaisValidator;
+import br.com.zup.edu.nossositedeviagens.config.ProibeRotaDuplicada;
 import br.com.zup.edu.nossositedeviagens.dto.request.RotasRequest;
 import br.com.zup.edu.nossositedeviagens.repository.AeroportoRepository;
-import br.com.zup.edu.nossositedeviagens.repository.Rota;
+import br.com.zup.edu.nossositedeviagens.model.Rota;
 import br.com.zup.edu.nossositedeviagens.repository.RotaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,6 +24,9 @@ public class RotaController {
     private AeroportoRepository aeroportoRepository;
 
     @Autowired
+    private ProibeRotaDuplicada proibeRotaDuplicada;
+
+    @Autowired
     private ProibeAeroportoOrigemDestinoIguaisValidator proibeAeroportoOrigemDestinoIguaisValidator;
 
     @PostMapping
@@ -35,5 +39,6 @@ public class RotaController {
     @InitBinder
     public void init(WebDataBinder binder){
         binder.addValidators(proibeAeroportoOrigemDestinoIguaisValidator);
+        binder.addValidators(proibeRotaDuplicada);
     }
 }

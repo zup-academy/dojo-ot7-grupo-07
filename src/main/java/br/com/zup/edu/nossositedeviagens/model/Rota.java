@@ -1,4 +1,4 @@
-package br.com.zup.edu.nossositedeviagens.repository;
+package br.com.zup.edu.nossositedeviagens.model;
 
 import br.com.zup.edu.nossositedeviagens.model.Aeroporto;
 import org.hibernate.validator.internal.IgnoreForbiddenApisErrors;
