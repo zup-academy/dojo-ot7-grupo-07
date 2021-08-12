@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.validation.Valid;
+import java.net.URI;
 
 @RestController
 @RequestMapping("/aeroportos")
@@ -25,11 +27,13 @@ public class AeroportoController {
     }
 
     @PostMapping
-    public ResponseEntity<?> create(@RequestBody @Valid AeroportoRequest request){
+    public ResponseEntity<?> create(@RequestBody @Valid AeroportoRequest request, UriComponentsBuilder uriBuilder){
         Aeroporto aeroporto = request.toModel(paisRepository);
 
         aeroportoRepository.save(aeroporto);
 
-        return ResponseEntity.status(201).body(aeroporto);
+        URI uri = uriBuilder.path("/aeroportos/{id}").buildAndExpand(aeroporto.getId()).toUri();
+
+        return ResponseEntity.created(uri).build();
     }
 }

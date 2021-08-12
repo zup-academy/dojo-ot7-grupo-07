@@ -22,7 +22,7 @@ public class Aeroporto {
         this.pais = pais;
     }
 
-    public String getNome() {
-        return nome;
+    public Long getId() {
+        return id;
     }
 }
